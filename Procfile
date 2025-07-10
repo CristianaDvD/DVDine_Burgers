@@ -1,0 +1,1 @@
+web: gunicorn dvdine_burgers.wsgi

@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Burger restaurant owned by a family with a passion for tasty food, especially burgers!"
+    />
+    <meta
+      name="keywords"
+      content="restaurant, burgers, food, fast-food, juicy-food, flavour, cheesy, delicious, tasty"
+    />
+    <!-- Favicon links -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/favicon/favicon-16x16.png'}"
+    />
+    <!-- Bootstrap CSS link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <!-- CSS link -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <title>DVDine Burgers</title>
+  </head>
+  <body>
+    <!--Nav bar-->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Book a Table</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sign In</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sign Up</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main></main>
+    <footer>
+      <div class="row">
+        <div class="col-lg-4">
+          <h3>Find us on:</h3>
+          <a
+            href="http://www.facebook.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our Facebook page (opens in new tab)"
+            >F</a
+          >
+          <a
+            href="http://www.instagram.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our Instagram page (opens in new tab)"
+            >I</a
+          >
+          <a
+            href="http://tiktok.com"
+            target="_blank"
+            rel="noopener"
+            aria-label="Visit our TikTok page (opens in new tab)"
+            >T</a
+          >
+        </div>
+        <div class="col-lg-4 footer-logo">
+          <!--Here will be logo displayed-->
+        </div>
+        <div class="col-lg-4 quote">
+          <p>"Don't be 'beef-uddled'<br />Burgers are always a good idea."</p>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-12">
+          <p class="copyright">Copyright © 2025 DVDine Burgers</p>
+        </div>
+      </div>
+    </footer>
+    <!-- Bootstrap JS link -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -21,6 +21,7 @@ from . import views
 
 
 urlpatterns = [
+    path('accounts/', include("allauth.urls")),
     path('admin/', admin.site.urls),
     path('booking/', index, name='booking'),
     path('summernote/', include('django_summernote.urls')),

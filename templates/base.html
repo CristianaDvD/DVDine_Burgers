@@ -72,7 +72,11 @@
         </div>
       </nav>
     </header>
-    <main></main>
+    <main>
+      {% block content %}
+      <!-- Content goes here -->
+      {% endblock content %}
+    </main>
     <footer>
       <div class="row">
         <div class="col-lg-4">
@@ -82,22 +86,22 @@
             target="_blank"
             rel="noopener"
             aria-label="Visit our Facebook page (opens in new tab)"
-            ><i class="fa-brands fa-facebook"></i></a
-          >
+            ><i class="fa-brands fa-facebook"></i
+          ></a>
           <a
             href="http://www.instagram.com"
             target="_blank"
             rel="noopener"
             aria-label="Visit our Instagram page (opens in new tab)"
-            ><i class="fa-brands fa-instagram"></i></a
-          >
+            ><i class="fa-brands fa-instagram"></i
+          ></a>
           <a
             href="http://tiktok.com"
             target="_blank"
             rel="noopener"
             aria-label="Visit our TikTok page (opens in new tab)"
-            ><i class="fa-brands fa-tiktok"></i></a
-          >
+            ><i class="fa-brands fa-tiktok"></i
+          ></a>
         </div>
         <div class="col-lg-4 footer-logo">
           <!--Here will be logo displayed-->
@@ -125,6 +129,6 @@
       crossorigin="anonymous"
     ></script>
     <!-- JS link -->
-     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
   </body>
 </html>

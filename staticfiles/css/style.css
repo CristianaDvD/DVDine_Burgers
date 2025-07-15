@@ -1,7 +1,77 @@
-.navbar {
-    background-color: brown;
+
+
+/* Nav bar */
+header, footer {
+    background-color: #8A3232;
+}
+#navbar {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 20px;
 }
 
+.navbar-brand {
+    margin-right: 0;
+    padding: 0;
+}
+.nav-link, .quote, .fa-brands, footer h3 {
+    color: #FFB580;
+}
+
+main {
+    height: 100vh;
+    background-color: #FFFFE1;
+}
+/* home page-about text index.html*/
+.about-box {
+    margin: 20px;
+    border: 1px solid;
+    border-color: saddlebrown;
+}
+.about-title {
+    color: #660000;
+}
+.about-intro {
+    color: #8A3232;
+}
+
+.overlap {
+    position: relative;
+}
+
+.overlap-img-top {
+    z-index: 0;
+    position: absolute;
+    padding-right: 70px;
+    padding-left: 50px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    transform: rotate(90deg);
+}
+.overlap-img-mid {
+    z-index: 1;
+    position: absolute;
+    padding-left: 250px;
+    padding-top: 160px;
+}
+.overlap-img-bottom {
+    position: absolute;
+    z-index: 0;
+    padding-top: 300px;
+    padding-left: 60px;
+}
+
+
+/* Footer */
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+hr {
+    margin: unset;
+}
 .copyright {
-    color: blueviolet;
+    color: #D2946F;
+    font-size: 12px;
+    padding-top: 5;
 }

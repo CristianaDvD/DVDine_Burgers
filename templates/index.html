@@ -1,9 +1,9 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <!-- About info starts here -->
-<div class="about container">
+<div class="about container-fluid">
   <div class="row">
-    <div class="col-lg-6">
-      <h2 class="about-title">Who is behind DVDine Burgers?</h2>
+    <div class="col-6 p-5 about-box">
+      <h2 class="about-title text-center">Who is behind DVDine Burgers?</h2>
       <p class="about-intro">
         At DVDine Burgers, we're more than just a burger joint — we’re a
         family-owned business with a deep-rooted passion for delicious,
@@ -22,12 +22,37 @@
         leave happy — that’s how we do it at DVDine. <br />Aren't you just a
         little bit curious to get to taste our Divine Burgers?
       </p>
-      <div class="col-12">
-        <a class="btn btn-primary" href="#" role="button">Book a Table</a>
+      <div class="col-12 text-center">
+        <a class="btn btn-primary about-btn" href="#" role="button"
+          >Book a Table</a
+        >
       </div>
     </div>
-    <div class="col-lg-6">
-      <!--Here will be the 3 images-->
+    <div class="col-6 overlap">
+      <div class="overlap-img-top">
+        <img
+          src="{% static 'images/about-burger.png' %}"
+          width="200"
+          height="250"
+          alt="A picture of a nice dish displaying 3 burgers and a fries basket."
+        />
+      </div>
+      <div class="overlap-img-mid">
+        <img
+          src="{% static 'images/about1-burger.png' %}"
+          width="150"
+          height="200"
+          alt="A man blured in the background showing his bitten burger."
+        />
+      </div>
+      <div class="overlap-img-bottom">
+        <img
+          src="{% static 'images/about2-burger.png' %}"
+          width="250"
+          height="160"
+          alt="Photo of 4 patty beef burgers on the barbeque."
+        />
+      </div>
     </div>
   </div>
 </div>

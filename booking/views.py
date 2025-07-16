@@ -1,7 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Booking
 
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Booking page")
+def booking_form(request):
+
+    booking = Booking.objects.all().order_by('-date').first()
+    return render(
+        request,
+        "booking/booking-page.html",
+        {"booking": booking},
+        )

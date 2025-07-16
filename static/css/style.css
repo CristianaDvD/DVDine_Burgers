@@ -41,38 +41,23 @@ main {
 }
 
 /* Titles */
-.about-title, .signin-title, .signup-title {
+.about-title, .signin-title, .signup-title, .signout-title {
   color: #660000;
   font-family: "Atma", sans-serif;
 }
 
-.overlap {
-  position: relative;
+
+.no-wrap {
+    flex-wrap: nowrap;
+}
+.about-img {
+    padding: 20px;
+    max-width: 100%;
+  height: auto;
 }
 
-.overlap-img-top {
-  z-index: 0;
-  position: absolute;
-  padding-right: 70px;
-  padding-left: 50px;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  transform: rotate(90deg);
-}
-.overlap-img-mid {
-  z-index: 1;
-  position: absolute;
-  padding-left: 250px;
-  padding-top: 160px;
-}
-.overlap-img-bottom {
-  position: absolute;
-  z-index: 0;
-  padding-top: 300px;
-  padding-left: 60px;
-}
 /* Sign in page*/
-.signin {
+.signin-up-out {
   padding: 60px;
 }
 .forgot, .signup-link, .signin-link {

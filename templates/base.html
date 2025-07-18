@@ -1,5 +1,4 @@
-{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %} 
-{% url 'booking' as booking_form %}
+{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %} {% url 'booking' as booking_form %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -117,7 +116,11 @@
       </nav>
     </header>
     <main>
-      {% block content %}
+      {% if user.is_authenticated %}
+      <p class="text-end m-4 text">You are logged in as {{ user }}</p>
+      {% else %}
+      <p class="text-end m-4 text">You are not logged in</p>
+      {% endif %} {% block content %}
       <!-- Content goes here -->
       {% endblock content %}
     </main>

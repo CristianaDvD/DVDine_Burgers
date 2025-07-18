@@ -1,19 +1,119 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <!--THIS IS A TEST PAGE For now -->
-<h1>Book a Table</h1>
+<h1 class="book-title text-center p-5">Ready to Burger Up?</h1>
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <form method="POST">
-               
-
-                <button class="btn" type="submit">Submit</button>
-            </form>
+  <div class="row">
+     <div class="col-md-6">
+      <div
+        id="carouselExampleAutoplaying"
+        class="carousel slide carousel-fade"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="3000">
+            <img
+              src="{% static 'images/family-burger.png' %}"
+              class="d-block w-100"
+              height="400"
+              alt="Family day out for burgers."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="{% static 'images/date-burger.png' %}"
+              class="d-block w-100"
+              height="400"
+              alt="Couple with burgers and drinks for a date."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="{% static 'images/business-burger.png' %}"
+              class="d-block w-100"
+              height="400"
+              alt="Business meeting out at a restaurant."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="{% static 'images/friends-burger.png' %}"
+              class="d-block w-100"
+              height="400"
+              alt="Friends out for burgers."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="{% static 'images/group-burger.png' %}"
+              class="d-block w-100"
+              height="400"
+              alt="A group of people sitting at a table waiting to be served."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="{% static 'images/group-burger1.png' %}"
+              class="d-block w-100"
+              height="400"
+              alt="Group of people eating burgers."
+            />
+          </div>
         </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleAutoplaying"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
     </div>
+    <div class="col-md-6">
+      <p class="book-text align-content-center px-5 py-2">
+        Craving bold flavors, juicy burgers, and unforgettable vibes? Book your
+        table now and skip the wait! Whether it’s a casual lunch, a night out
+        with friends, or a special celebration, we’ve got the perfect spot for
+        you. <br> <br /><i class="fa-solid fa-burger"></i> Fresh, handcrafted
+        burgers. <br /><i class="fa-solid fa-user-group"></i> Great for groups,
+        families, or date nights. <br /><i class="fa-regular fa-clock"></i>
+        Quick and easy online booking. 
+      </p>
+      {% if user.is_authenticated %}
+      <div class="col-12 text-center">
+        <button type="button" class="btn" id="myBtn">
+          Make a New Booking
+        </button>
+        <a href="#" class="btn">View your Bookings</a>
+        {% else %}
+        <p class="else-text text-center"><strong>To book or view your bookings, please sign in:</strong></p>
+        <div class="col-12 d-flex justify-content-center">
+        <a
+          class="nav-link {% if request.path == login_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+          aria-current="page" role="button"
+          href="{% url 'account_login' %}"
+          >Sign In</a
+        ><span class="border fs-4 text pt-2">OR</span>
+        <a
+          class="nav-link {% if request.path == signup_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+          aria-current="page" role="button"
+          href="{% url 'account_signup' %}"
+          >Sign Up</a
+        ></div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
 </div>
-
 
 {% endblock %}

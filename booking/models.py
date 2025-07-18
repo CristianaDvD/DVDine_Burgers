@@ -1,6 +1,8 @@
 import datetime
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 # Defines time options for bookings (12:00 to 23:00)
 TIMES = tuple()
@@ -16,11 +18,6 @@ for hrs in range(12, 23):
         time_list.append((time_value, time_text))
 
 TIMES = tuple(time_list)
-
-# Defines number of guest range available for bookings min=1, max=12.
-GUEST_NUMBER = tuple()
-for num in range(1, 13):
-    GUEST_NUMBER = ((num, str(num)),)
 
 # Variable to allow admin to control bookings
 STATUS = (
@@ -40,8 +37,9 @@ class Booking(models.Model):
                              related_name="bookings")
     date = models.DateField()
     time = models.TimeField(choices=TIMES)
-    number_of_guests = models.PositiveIntegerField(choices=GUEST_NUMBER,
-                                                   default=2)
+    number_of_guests = models.PositiveIntegerField(
+        default=2,
+        validators=[MinValueValidator(1), MaxValueValidator(10)])
     status = models.IntegerField(choices=STATUS, default=0)
     special_requests = models.TextField(blank=True)
 

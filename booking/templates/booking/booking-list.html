@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Booking list -->
+ <div class="container">
+    <div class="row">
+        <div class="col-">
+            <h3 class="list-title">My Bookings</h3>
+        </div>
+        <div class="col">
+             {% if booking.contact_id == user.id %}
+            <ul>
+                {% for booking in bookings %}
+                <li>
+                    {{ booking }}
+                    {% if booking.status != 2 and booking.status != 3 %}
+                    <a href="" class="btn">Update</a>
+                    {% endif %}
+                    <a href="" class="btn">Delete</a>
+                </li>
+                {% empty %}
+                <p class="text">No existing bookings!</p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn" id="myBtn">Make a New Booking</button>
+        </div>
+    </div>
+ </div>
+{% endblock %}

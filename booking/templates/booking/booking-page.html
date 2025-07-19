@@ -1,8 +1,10 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<!--THIS IS A TEST PAGE For now -->
+{% load crispy_forms_tags %}
+<!-- Booking page -->
 <h1 class="book-title text-center p-5">Ready to Burger Up?</h1>
 <div class="container">
   <div class="row">
+    <!--Carousel with images showing people having burgers out in town-->
      <div class="col-md-6">
       <div
         id="carouselExampleAutoplaying"
@@ -79,6 +81,7 @@
         </button>
       </div>
     </div>
+    <!--Intro before booking a table-->
     <div class="col-md-6">
       <p class="book-text align-content-center px-5 py-2">
         Craving bold flavors, juicy burgers, and unforgettable vibes? Book your
@@ -91,10 +94,11 @@
       </p>
       {% if user.is_authenticated %}
       <div class="col-12 text-center">
-        <button type="button" class="btn" id="myBtn">
+        <!-- Modal button for booking form -->
+        <button id="openCreateModal" class="btn" data-url="{% url 'bookingForm' %}">
           Make a New Booking
         </button>
-        <a href="#" class="btn">View your Bookings</a>
+        <a href="{% url 'bookingList' %}" class="btn">View your Bookings</a>
         {% else %}
         <p class="else-text text-center"><strong>To book or view your bookings, please sign in:</strong></p>
         <div class="col-12 d-flex justify-content-center">
@@ -114,6 +118,32 @@
       {% endif %}
     </div>
   </div>
+</div>
+<!--Modal-->
+<div class="modal fade {% if modal_show %}show d-block{% endif %}" id="modalForm" tabindex="-1" aria-hidden="true" {% if modal_show %}style="background-color:rgba(0,0,0,.5);" aria-modal="true" role="dialog"{% endif %}>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            {% if modal_type == 'new_booking' %}
+            <form action="{{ modal_action }}" method="POST" class="ajax-form">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ modal_title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="modalCloseButton"></button>
+                </div>
+                <div class="modal-body">
+                    {% if form.errors %}
+                    <div class="alert alert-danger">Form not submitted! Please fix the errors shown!</div>
+                    {% endif %}
+                    {{ form|crispy }}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn save-btn" type="submit">SAVE</button>
+                    <button class="btn cancel-btn" type="button" data-bs-dismiss="modal" id="modalCancelButton">CANCEL</button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}

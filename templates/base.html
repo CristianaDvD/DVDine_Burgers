@@ -77,9 +77,9 @@
               </li>
               <li class="nav-item">
                 <a
-                  class="nav-link {% if request.path == booking_form.url %}active"
+                  class="nav-link {% if request.path == booking_page.url %}active"
                   aria-current="page{% endif %}"
-                  href="{% url 'booking_form' %}"
+                  href="{% url 'bookingPage' %}"
                   >Book a Table</a
                 >
               </li>
@@ -117,9 +117,9 @@
     </header>
     <main>
       {% if user.is_authenticated %}
-      <p class="text-end m-4 text">You are logged in as {{ user }}</p>
+      <p class="text-end m-4 text-log">You are logged in as {{ user }}</p>
       {% else %}
-      <p class="text-end m-4 text">You are not logged in</p>
+      <p class="text-end m-4 text-log">You are not logged in</p>
       {% endif %} {% block content %}
       <!-- Content goes here -->
       {% endblock content %}

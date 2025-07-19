@@ -1,9 +1,12 @@
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Playpen+Sans:wght@100..800&display=swap");
 
-.text, .about-intro, .book-text, .else-text {
+.text, .about-intro, .book-text, .else-text, .text-log {
     font-family: "Playpen Sans", sans-serif;
     color: #8a3232;
+}
+.text-log {
+    font-size: small;
 }
 /* Nav bar */
 header,
@@ -38,10 +41,11 @@ main {
   margin: 20px;
   border: 1px solid;
   border-color: saddlebrown;
+  margin: auto;
 }
 
 /* Titles */
-.about-title, .signin-title, .signup-title, .signout-title, .book-title {
+.about-title, .signin-title, .signup-title, .signout-title, .book-title, .list-title {
   color: #660000;
   font-family: "Atma", sans-serif;
 }

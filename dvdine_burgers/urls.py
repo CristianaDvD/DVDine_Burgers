@@ -22,7 +22,7 @@ from . import views
 urlpatterns = [
     path('accounts/', include("allauth.urls")),
     path('admin/', admin.site.urls),
-    path('booking/', include('booking.urls'), name='booking_form'),
+    path('booking/', include('booking.urls')),
     path('summernote/', include('django_summernote.urls')),
     path('', views.home, name='home'),
 ]

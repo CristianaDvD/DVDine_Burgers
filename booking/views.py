@@ -1,99 +1,117 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 from django.template.loader import render_to_string
 from .models import Booking
 from .forms import BookingForm
+from bs4 import BeautifulSoup
 
 
 # Create your views here.
+def extract_modal_dialog(html):
+    soup = BeautifulSoup(html, 'html.parser')
+    modal = soup.select_one('.modal-dialog')
+    return str(modal) if modal else '<div class="modal-dialog">Error loading modal.</div>'
+
 
 def booking_page(request):
+    """
+    Display booking landing page
+    """
     return render(request, 'booking/booking-page.html')
 
 
-@login_required
 def booking_form(request):
     """
     View to handle booking form submission.
-    Used in the modal on 'booking-page.html'.
+    Used in the modal on 'booking-page.html'
+    with AJAX form.
     """
-    form = BookingForm(request.POST or None)
     if request.method == 'POST':
+        form = BookingForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
-            booking.user = request.user
-            booking.status == 0
+            booking.contact = request.user
             booking.save()
-            messages.success(
-                request,
-                'Booking submitted and awaiting approval!')
-            return JsonResponse({'success': True})
+            return JsonResponse(
+                {'success': True,
+                 'message': 'Booking created successfully!'})
+    else:
+        form = BookingForm()
 
-    html = render_to_string('booking-page.html', {
+    # Only render the modal content section, not full HTML
+    html = render_to_string('booking/booking-page.html', {
         'form': form,
-        'modal_type': 'new_booking',
-        'modal_show': True,
+        'modal_title': 'Make a New Booking',
         'modal_action': request.path,
-        'modal_title': 'New Booking',
-        'bookings': Booking.objects.filter(user=request.user).order_by('-date')
+        'modal_type': 'new_booking',
+        'modal_show': True
     }, request=request)
-    return JsonResponse({'success': False, 'html': html})
+
+    modal_html = extract_modal_dialog(html)
+    return JsonResponse({'success': False, 'html': modal_html})
 
 
-@login_required
 def booking_list(request):
+    """
+    Display user's bookings in booking-list.html.
+    Modals handled separately via AJAX
+    """
     bookings = Booking.objects.filter(user=request.user).order_by('-date')
-    return render(request, 'booking/booking-list.html', {'bookings': bookings})
+    return render(
+        request,
+        'booking/booking-list.html',
+        {'bookings': bookings})
 
 
-@login_required
 def modify_booking(request, pk):
     """
-    Allows a user to modify their existing booking.
+    Hadles update form for modal in booking-list.html
     """
-    booking = get_object_or_404(Booking, pk=pk, user=request.user)
-    form = BookingForm(request.POST or None, instance=booking)
+    booking = get_object_or_404(Booking, pk=pk, contact=request.user)
+
     if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
-            form.status == 0
             form.save()
-            messages.success(
-                request,
-                'Booking updated and awaiting approval')
             return JsonResponse(
-                {'success': True})
-    html = render_to_string('booking-list.html', {
+                {'success': True,
+                 'message': 'Booking updated successfully!'})
+    else:
+        form = BookingForm(instance=booking)
+
+    html = render_to_string('booking/booking-list.html', {
         'form': form,
-        'modal_type': 'update',
-        'modal_show': True,
+        'modal_title': 'Update Booking',
         'modal_action': request.path,
-        'modal_title': 'Modify your Booking',
-        'booking_to_update': booking,
-        'bookings': Booking.objects.filter(user=request.user).order_by('-date')
+        'modal_type': 'update',
+        'modal_show': True
     }, request=request)
-    return JsonResponse({'success': False, 'html': html})
+
+    modal_html = extract_modal_dialog(html)
+    return JsonResponse({'success': False, 'html': modal_html})
 
 
-@login_required
 def delete_booking(request, pk):
     """
-    Allows looged-in users to cancel existing bookings
+    Handles delete confimation modal and form
+    submission via AJAX.
     """
-    booking = get_object_or_404(Booking, pk=pk, user=request.user)
+    booking = get_object_or_404(Booking, pk=pk, contact=request.user)
+
     if request.method == 'POST':
         booking.delete()
-        messages.success(
-            request,
-            'Booking cancelled successfully!')
         return JsonResponse(
-            {'success': True})
-    html = render_to_string('booking-list.html', {
-        'modal_type': 'delete',
-        'modal_show': True,
-        'modal_action': request.path,
+            {'success': True,
+             'message': 'Booking deleted successfully!'})
+
+    html = render_to_string('booking/booking-list.html', {
         'booking_to_delete': booking,
-        'bookings': Booking.objects.filter(user=request.user).order_by('-date')
+        'modal_title': 'Confirm Delete',
+        'modal_action': request.path,
+        'modal_type': 'delete',
+        'modal_show': True
     }, request=request)
-    return JsonResponse({'success': False, 'html': html})
+
+    modal_html = extract_modal_dialog(html)
+    return JsonResponse({'success': False, 'html': modal_html})

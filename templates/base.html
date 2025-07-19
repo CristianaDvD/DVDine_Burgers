@@ -1,4 +1,4 @@
-{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %} {% url 'booking' as booking_form %}
+{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %} {% url 'bookingPage' as booking_page %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -186,9 +186,7 @@
     <!--Font awesome kit-->
     <script
       src="https://kit.fontawesome.com/4804c64e3a.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- JS link -->
-    <script src="{% static 'js/script.js' %}"></script>
+      crossorigin="anonymous"></script>
+      {% block scripts %}{% endblock %}
   </body>
 </html>

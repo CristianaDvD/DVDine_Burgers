@@ -1,11 +1,10 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-{% load crispy_forms_tags %}
+{% extends 'base.html' %} {% load static %} {% block content %} {% load crispy_forms_tags %}
 <!-- Booking page -->
 <h1 class="book-title text-center p-5">Ready to Burger Up?</h1>
 <div class="container">
   <div class="row">
     <!--Carousel with images showing people having burgers out in town-->
-     <div class="col-md-6">
+    <div class="col-md-6">
       <div
         id="carouselExampleAutoplaying"
         class="carousel slide carousel-fade"
@@ -87,63 +86,106 @@
         Craving bold flavors, juicy burgers, and unforgettable vibes? Book your
         table now and skip the wait! Whether it’s a casual lunch, a night out
         with friends, or a special celebration, we’ve got the perfect spot for
-        you. <br> <br /><i class="fa-solid fa-burger"></i> Fresh, handcrafted
-        burgers. <br /><i class="fa-solid fa-user-group"></i> Great for groups,
-        families, or date nights. <br /><i class="fa-regular fa-clock"></i>
-        Quick and easy online booking. 
+        you. <br />
+        <br /><i class="fa-solid fa-burger"></i> Fresh, handcrafted burgers.
+        <br /><i class="fa-solid fa-user-group"></i> Great for groups, families,
+        or date nights. <br /><i class="fa-regular fa-clock"></i>
+        Quick and easy online booking.
       </p>
       {% if user.is_authenticated %}
       <div class="col-12 text-center">
         <!-- Modal button for booking form -->
-        <button id="openCreateModal" class="btn" data-url="{% url 'bookingForm' %}">
+        <button
+          id="openCreateModal"
+          class="btn"
+          data-url="{% url 'bookingForm' %}"
+        >
           Make a New Booking
         </button>
         <a href="{% url 'bookingList' %}" class="btn">View your Bookings</a>
         {% else %}
-        <p class="else-text text-center"><strong>To book or view your bookings, please sign in:</strong></p>
+        <p class="else-text text-center">
+          <strong>To book or view your bookings, please sign in:</strong>
+        </p>
         <div class="col-12 d-flex justify-content-center">
-        <a
-          class="nav-link {% if request.path == login_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
-          aria-current="page" role="button"
-          href="{% url 'account_login' %}"
-          >Sign In</a
-        ><span class="border fs-4 text pt-2">OR</span>
-        <a
-          class="nav-link {% if request.path == signup_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
-          aria-current="page" role="button"
-          href="{% url 'account_signup' %}"
-          >Sign Up</a
-        ></div>
+          <a
+            class="nav-link {% if request.path == login_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+            aria-current="page"
+            role="button"
+            href="{% url 'account_login' %}"
+            >Sign In</a
+          ><span class="border fs-4 text pt-2">OR</span>
+          <a
+            class="nav-link {% if request.path == signup_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+            aria-current="page"
+            role="button"
+            href="{% url 'account_signup' %}"
+            >Sign Up</a
+          >
+        </div>
       </div>
       {% endif %}
     </div>
   </div>
 </div>
 <!--Modal-->
-<div class="modal fade {% if modal_show %}show d-block{% endif %}" id="modalForm" tabindex="-1" aria-hidden="true" {% if modal_show %}style="background-color:rgba(0,0,0,.5);" aria-modal="true" role="dialog"{% endif %}>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            {% if modal_type == 'new_booking' %}
-            <form action="{{ modal_action }}" method="POST" class="ajax-form">
-                {% csrf_token %}
-                <div class="modal-header">
-                    <h5 class="modal-title">{{ modal_title }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" id="modalCloseButton"></button>
-                </div>
-                <div class="modal-body">
-                    {% if form.errors %}
-                    <div class="alert alert-danger">Form not submitted! Please fix the errors shown!</div>
-                    {% endif %}
-                    {{ form|crispy }}
-                </div>
-                <div class="modal-footer">
-                    <button class="btn save-btn" type="submit">SAVE</button>
-                    <button class="btn cancel-btn" type="button" data-bs-dismiss="modal" id="modalCancelButton">CANCEL</button>
-                </div>
-            </form>
-            {% endif %}
+<div
+  class="modal fade {% if modal_show %}show d-block{% endif %}"
+  id="modalForm"
+  tabindex="-1"
+  aria-hidden="true"
+  {%
+  if
+  modal_show
+  %}style="background-color:rgba(0,0,0,.5);"
+  aria-modal="true"
+  role="dialog"
+  {%
+  endif
+  %}
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {% if modal_type == 'new_booking' %}
+      <form action="{{ modal_action }}" method="POST" class="ajax-form">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">{{ modal_title }}</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            id="modalCloseButton"
+          ></button>
         </div>
+        <div class="modal-body">
+          {{ form|crispy }}
+          {% if form.errors %}
+          <div class="alert alert-danger">
+            Form not submitted! Please fix the errors shown!
+          </div>
+          {% endif %}
+        </div>
+        <div class="modal-footer">
+          <button class="btn save-btn" type="submit">SAVE</button>
+          <button
+            class="btn cancel-btn"
+            type="button"
+            data-bs-dismiss="modal"
+            id="modalCancelButton"
+          >
+            CANCEL
+          </button>
+        </div>
+      </form>
+      {% endif %}
     </div>
+  </div>
 </div>
-
+<div id="toast-container"></div>
 {% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/modals.js' %}"></script>
+{% endblock %}
+

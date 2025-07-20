@@ -1,6 +1,7 @@
 from django import forms
 from .models import Booking
 from django.utils import timezone
+import datetime
 
 
 class BookingForm(forms.ModelForm):
@@ -32,3 +33,19 @@ class BookingForm(forms.ModelForm):
             raise forms.ValidationError(
                 'Ups! We are closed on Mondays!')
         return date
+
+    def clean(self):
+        cleaned_data = super().clean()
+        date = cleaned_data.get("date")
+        time = cleaned_data.get("time")
+
+        if date and time:
+            weekday = date.weekday()  # Monday = 0, Sunday = 6
+
+            if 1 <= weekday <= 3:  # Tuesday to Thursday
+                if not (datetime.time(12, 0) <= time <= datetime.time(21, 0)):
+                    raise forms.ValidationError(
+                        "Bookings on Tue–Thu are only allowed between 12:00 and 21:00."
+                    )
+
+        return cleaned_data

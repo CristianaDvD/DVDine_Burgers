@@ -11,7 +11,7 @@
     </div>
 
     <div class="col">
-      <table class="table table-hover table-striped-columns custom-table">
+      <table class="table table-hover table-striped-columns table-sm custom-table">
         <thead class="text-center">
           <tr>
             <th scope="col">Date</th>
@@ -37,13 +37,13 @@
             {% if booking.status != 2 and booking.status != 3 %}
             <td class="text-center">
               <button
-                class="hand btn update-btn openUpdateModal"
+                class="btn custom-btn update-btn openUpdateModal"
                 data-url="{% url 'bookingUpdate' booking.pk %}"
               >
                 Update
               </button>
               <button
-                class="hand btn del-btn openDeleteModal"
+                class=" btn custom-btn del-btn openDeleteModal"
                 data-url="{% url 'bookingDelete' booking.pk %}"
               >
                 Delete
@@ -67,7 +67,7 @@
     <div class="col">
       <button
           id="openCreateModal"
-          class="btn book-btn hand"
+          class="btn book-btn"
           data-url="{% url 'bookingForm' %}"
         >
           Make a New Booking

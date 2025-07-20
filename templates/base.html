@@ -1,4 +1,4 @@
-{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %} {% url 'bookingPage' as booking_page %}
+{% load static %} {% url 'home' as home_url %} {% url 'account_login' as login_url %} {% url 'account_signup' as signup_url %} {% url 'account_logout' as logout_url %} {% url 'bookingPage' as booking_page %} {% url 'menu' as menu_url %} {% url 'contact' as contact_url %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -70,10 +70,20 @@
                 >
               </li>
               <li class="nav-item hand">
-                <a class="nav-link" href="#">Menu</a>
+                <a
+                  class="nav-link {% if request.path == menu_url %}active"
+                  aria-current="page{% endif %}"
+                  href="{% url 'menu' %}"
+                  >Menu</a
+                >
               </li>
               <li class="nav-item hand">
-                <a class="nav-link" href="#">Contact us</a>
+                <a
+                  class="nav-link {% if request.path == contact_url %}active"
+                  aria-current="page{% endif %}"
+                  href="{% url 'contact' %}"
+                  >Contact us</a
+                >
               </li>
               <li class="nav-item hand">
                 <a
@@ -130,7 +140,8 @@
           <h3>Find us on:</h3>
           <div class="social-media row justify-content-center">
             <div class="col col-md-1">
-              <a class="social hand"
+              <a
+                class="social hand"
                 href="http://www.facebook.com"
                 target="_blank"
                 rel="noopener"
@@ -139,7 +150,8 @@
               ></a>
             </div>
             <div class="col col-md-1">
-              <a class="social hand"
+              <a
+                class="social hand"
                 href="http://www.instagram.com"
                 target="_blank"
                 rel="noopener"
@@ -148,7 +160,8 @@
               ></a>
             </div>
             <div class="col col-md-1">
-              <a class="social hand"
+              <a
+                class="social hand"
                 href="http://tiktok.com"
                 target="_blank"
                 rel="noopener"
@@ -186,7 +199,8 @@
     <!--Font awesome kit-->
     <script
       src="https://kit.fontawesome.com/4804c64e3a.js"
-      crossorigin="anonymous"></script>
-      {% block scripts %}{% endblock %}
+      crossorigin="anonymous"
+    ></script>
+    {% block scripts %}{% endblock %}
   </body>
 </html>

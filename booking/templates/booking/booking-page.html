@@ -128,61 +128,7 @@
     </div>
   </div>
 </div>
-<!--Modal-->
-<div
-  class="modal fade {% if modal_show %}show d-block{% endif %}"
-  id="modalForm"
-  tabindex="-1"
-  aria-hidden="true"
-  {%
-  if
-  modal_show
-  %}style="background-color:rgba(0,0,0,.5);"
-  aria-modal="true"
-  role="dialog"
-  {%
-  endif
-  %}
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      {% if modal_type == 'new_booking' %}
-      <form action="{{ modal_action }}" method="POST" class="ajax-form">
-        {% csrf_token %}
-        <div class="modal-header">
-          <h5 class="modal-title">{{ modal_title }}</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            id="modalCloseButton"
-          ></button>
-        </div>
-        <div class="modal-body">
-          {{ form|crispy }}
-          {% if form.errors %}
-          <div class="alert alert-danger">
-            Form not submitted! Please fix the errors shown!
-          </div>
-          {% endif %}
-        </div>
-        <div class="modal-footer">
-          <button class="btn save-btn" type="submit">SAVE</button>
-          <button
-            class="btn cancel-btn"
-            type="button"
-            data-bs-dismiss="modal"
-            id="modalCancelButton"
-          >
-            CANCEL
-          </button>
-        </div>
-      </form>
-      {% endif %}
-    </div>
-  </div>
-</div>
-<div id="toast-container"></div>
+
 {% endblock %}
 
 {% block scripts %}

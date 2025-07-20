@@ -1,6 +1,5 @@
 from django import forms
 from .models import Booking
-import datetime
 from django.utils import timezone
 
 
@@ -24,7 +23,7 @@ class BookingForm(forms.ModelForm):
             'status': forms.HiddenInput(),
         }
 
-    def clen_date(self):
+    def clean_date(self):
         date = self.cleaned_data['date']
         if date < timezone.now().date():
             raise forms.ValidationError(
@@ -32,7 +31,4 @@ class BookingForm(forms.ModelForm):
         if date.weekday() == 0:
             raise forms.ValidationError(
                 'Ups! We are closed on Mondays!')
-        if date <= datetime.date.now():
-            raise forms.ValidationError(
-                'Ups! You have to book in advance!')
-        return datetime
+        return date

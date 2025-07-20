@@ -1,0 +1,53 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!-- Modal -->
+<div class="modal fade show d-block" id="modalForm" tabindex="-1" aria-modal="true" role="dialog" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {% if modal_type == 'new_booking' or modal_type == 'update' %}
+      <form action="{{ modal_action }}" method="POST" class="ajax-form">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">{{ modal_title }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="modalCloseButton"></button>
+        </div>
+        <div class="modal-body">
+          {{ form|crispy }}
+          {% if form.errors %}
+          <div class="alert alert-danger mt-3 text">
+            Please correct the errors below.
+          </div>
+          {% endif %}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Save</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalCancelButton">Cancel</button>
+        </div>
+      </form>
+
+      {% elif modal_type == 'delete' %}
+      <form method="POST" action="{{ modal_action }}" class="ajax-form">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title text-danger">{{ modal_title }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="modalCloseButton"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text">
+            Are you sure you want to delete this booking?
+          </p>
+          <p><strong>{{ booking.date }} at {{ booking.time }}</strong></p>
+          <p class="text-danger text">This action is permanent and cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalCancelButton">Cancel</button>
+        </div>
+      </form>
+      {% endif %}
+
+    </div>
+  </div>
+</div>

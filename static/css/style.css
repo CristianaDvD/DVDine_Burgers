@@ -1,6 +1,7 @@
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Playpen+Sans:wght@100..800&display=swap");
 
+
 .text,
 .about-intro,
 .book-text,
@@ -52,20 +53,20 @@ main {
 }
 /* Table with booking list */
 .table {
-    border: #660000 solid 2px;
+  border: #660000 solid 2px;
 }
 .custom-table td {
-    background-color: rgb(231, 199, 157) !important;
-    color: #8a3232;
+  background-color: rgb(231, 199, 157) !important;
+  color: #8a3232;
 }
 .custom-table th {
-    background-color: #b5734d !important;
-    font-size: larger;
-    color:#660000;
+  background-color: #b5734d !important;
+  font-size: larger;
+  color: #660000;
 }
 .modal-content {
-    background-color:#ffffe1;
-    border: #660000 solid;
+  background-color: #ffffe1;
+  border: #660000 solid;
 }
 /* Titles */
 .about-title,
@@ -75,7 +76,8 @@ main {
 .book-title,
 .list-title,
 thead,
-.modal-title {
+.modal-title,
+.res-title {
   color: #660000;
   font-family: "Atma", sans-serif;
 }
@@ -90,9 +92,6 @@ thead,
 }
 
 /* Sign in page*/
-.signin-up-out {
-  padding: 60px;
-}
 .forgot,
 .signup-link,
 .signin-link {
@@ -102,61 +101,70 @@ thead,
 
 /* Buttons */
 
-.book-btn, .sg-btn, .view-btn {
+.book-btn,
+.sg-btn,
+.view-btn {
   background-color: #8a3232;
   color: #ffb580;
   font-family: "Atma", sans-serif;
   border: 2px solid #660000;
 }
-.book-btn:hover, .sg-btn:hover, .view-btn:hover {
+.book-btn:hover,
+.sg-btn:hover,
+.view-btn:hover {
   background-color: #ffb580;
   color: #660000;
   border: 2px solid #660000;
 }
 
 .del-btn {
-    background-color: red;
-    color: #ffb580;
-    border: 2px solid darkred;
+  background-color: red;
+  color: #ffb580;
+  border: 2px solid darkred;
 }
 .del-btn:hover {
-    background-color: lightcoral;
-    color: red;
-    border: 2px solid darkred;
+  background-color: lightcoral;
+  color: red;
+  border: 2px solid darkred;
 }
 
-.update-btn, .save-btn {
-    background-color: rgb(4, 32, 4);
-    color: rgb(115, 159, 50);
-    border: 2px solid #660000;
+.update-btn,
+.save-btn {
+  background-color: rgb(4, 32, 4);
+  color: rgb(115, 159, 50);
+  border: 2px solid #660000;
 }
 
-.update-btn:hover, .save-btn:hover {
-    background-color: rgb(115, 159, 50);
-    color: rgb(4, 32, 4);
-    border: 2px solid #660000;
+.update-btn:hover,
+.save-btn:hover {
+  background-color: rgb(115, 159, 50);
+  color: rgb(4, 32, 4);
+  border: 2px solid #660000;
 }
 
 .cancel-btn {
-    background-color: rgb(248, 219, 32);
-    color: black ;
-    border: 2px solid #660000;
+  background-color: rgb(248, 219, 32);
+  color: black;
+  border: 2px solid #660000;
 }
 .cancel-btn:hover {
-    background-color: rgb(158, 158, 4);
-    color: black;
-    border: 2px solid #660000;
+  background-color: rgb(158, 158, 4);
+  color: black;
+  border: 2px solid #660000;
 }
 .home-btn {
-    font-family: "Playpen Sans", sans-serif;
-    background-color: #8a3232;
-    color: #ffffe1;
-    border: 2px solid #660000;
+  font-family: "Atma", sans-serif;
+  background-color: #8a3232;
+  color: #ffffe1;
+  border: 2px solid #660000;
 }
 .home-btn:hover {
-    background-color: #ffffe1;
-    color: #660000;
-    border: 2px solid #660000;
+  background-color: #ffffe1;
+  color: #660000;
+  border: 2px solid #660000;
+}
+.sm-screen {
+    margin-bottom: 4px;
 }
 
 
@@ -177,7 +185,25 @@ hr {
   padding-top: 5;
 }
 
+.social {
+  transition: color 0.3s ease-in-out;
+  font-size: larger;
+}
+.social:hover {
+  color: #ffffe1;
+}
+
 @media screen and (min-width: 320px) {
-    /* home page */
-    
+  /* home page */
+  .about-intro, .text {
+    font-size: smaller;
+  }
+  .logo {
+    width: 200px;
+    height: 50px;
+  }
+  .text-log {
+    font-size: x-small;
+  }
+
 }

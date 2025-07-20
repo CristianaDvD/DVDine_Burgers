@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <!--Carousel with images showing people having burgers out in town-->
-    <div class="col-md-6">
+    <div class="col-lg-6 d-none d-lg-block">
       <div
         id="carouselExampleAutoplaying"
         class="carousel slide carousel-fade"
@@ -81,7 +81,7 @@
       </div>
     </div>
     <!--Intro before booking a table-->
-    <div class="col-md-6">
+    <div class="col col-lg-6">
       <p class="book-text align-content-center px-5 py-2">
         Craving bold flavors, juicy burgers, and unforgettable vibes? Book your
         table now and skip the wait! Whether it’s a casual lunch, a night out
@@ -96,26 +96,26 @@
       <div class="col-12 text-center">
         <!-- Modal button for booking form -->
         <button id="openCreateModal"
-          class="btn book-btn"
+          class="btn book-btn sm-screen"
           data-url="{% url 'bookingForm' %}"
         >
           Make a New Booking
         </button>
-        <a href="{% url 'bookingList' %}" class="btn view-btn">View your Bookings</a>
+        <a href="{% url 'bookingList' %}" class="btn view-btn sm-screen ">View your Bookings</a>
         {% else %}
         <p class="else-text text-center">
           <strong>To book or view your bookings, please sign in:</strong>
         </p>
         <div class="col-12 d-flex justify-content-center">
           <a
-            class="sg-btn nav-link {% if request.path == login_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+            class="hand sg-btn nav-link {% if request.path == login_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
             aria-current="page"
             role="button"
             href="{% url 'account_login' %}"
             >Sign In</a
           ><span class="border fs-4 text pt-2">OR</span>
           <a
-            class="sg-btn nav-link {% if request.path == signup_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+            class="hand sg-btn nav-link {% if request.path == signup_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
             aria-current="page"
             role="button"
             href="{% url 'account_signup' %}"

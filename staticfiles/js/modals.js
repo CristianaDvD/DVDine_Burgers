@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  let bootstrapModal = null;
+  let currentModal = null;
   const modalContainerId = "modalContainer";
 
   function ensureModalContainer() {
@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
       (() => {
         const container = document.createElement("div");
         container.id = "toast-container";
-        container.className = "toast-container position-fixed bottom-0 end-0 p-3";
+        container.className =
+          "toast-container position-fixed bottom-0 end-0 p-3";
         document.body.appendChild(container);
         return container;
       })();
@@ -63,9 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         setTimeout(() => {
-          if (bootstrapModal) bootstrapModal.dispose();
-          bootstrapModal = new bootstrap.Modal(modalEl);
-          bootstrapModal.show();
+          if (currentModal) currentModal.dispose();
+          currentModal = new bootstrap.Modal(modalEl);
+          currentModal.show();
           bindForms(modalEl);
         }, 10);
       })
@@ -93,15 +94,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // If modal missing, assume full page and reload UI
             if (!newModalEl) {
+              // Clean up Bootstrap modal side effects
+              if (currentModal) currentModal.hide();
+
+              document.body.classList.remove("modal-open");
+              document.body.style.overflow = "";
+              document
+                .querySelectorAll(".modal-backdrop")
+                .forEach((el) => el.remove());
+
               document.body.innerHTML = html;
-              bindButtons();
-              showToast("Success", "Booking updated", "success");
+              showToast("Success", "Booking updated.", "success");
               return;
             }
 
             const formErrors = newModalEl.querySelector(".alert-danger");
             if (!formErrors) {
-              bootstrapModal.hide();
+              currentModal.hide();
               showToast("Success", "Action completed", "success");
 
               // Optional: full page reload if list was updated
@@ -112,9 +121,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // Modal still has errors, rebinding form
-            if (bootstrapModal) bootstrapModal.dispose();
-            bootstrapModal = new bootstrap.Modal(newModalEl);
-            bootstrapModal.show();
+            if (currentModal) currentModal.dispose();
+            currentModal = new bootstrap.Modal(newModalEl);
+            currentModal.show();
             bindForms(newModalEl);
             showToast("Error", "Please correct the form errors", "danger");
           })
@@ -127,10 +136,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function bindButtons() {
-    document.getElementById("openCreateModal")?.addEventListener("click", function () {
-      const url = this.getAttribute("data-url");
-      if (url) loadModal(url);
-    });
+    document
+      .getElementById("openCreateModal")
+      ?.addEventListener("click", function () {
+        const url = this.getAttribute("data-url");
+        if (url) loadModal(url);
+      });
 
     document.querySelectorAll(".openUpdateModal").forEach((btn) => {
       btn.addEventListener("click", function () {

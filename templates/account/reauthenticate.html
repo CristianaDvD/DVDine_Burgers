@@ -1,14 +1,14 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 
 {% block head_title %}{% trans "Confirm Access" %}{% endblock head_title %}
 
 {% block content %}
+<div class="container text-center">
+<h1 class="res-title">{% trans "Confirm Access" %}</h1>
 
-<h1>{% trans "Confirm Access" %}</h1>
-
-<p>{% blocktranslate %}To safeguard the security of your account, please enter your password:{% endblocktranslate %}</p>
+<p class="text">{% blocktranslate %}To safeguard the security of your account, please enter your password:{% endblocktranslate %}</p>
 
 <form class="reauthenticate" method="POST" action="{% url 'account_reauthenticate' %}">
   {% csrf_token %}
@@ -18,5 +18,6 @@
   {% endif %}
   <button type="submit">{% trans "Confirm" %}</button>
 </form>
+</div>
 
 {% endblock content %}

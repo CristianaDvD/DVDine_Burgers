@@ -1,12 +1,19 @@
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Playpen+Sans:wght@100..800&display=swap");
 
-.text, .about-intro, .book-text, .else-text, .text-log {
-    font-family: "Playpen Sans", sans-serif;
-    color: #8a3232;
+
+.text,
+.about-intro,
+.book-text,
+.else-text,
+.text-log,
+tbody,
+.modal-body {
+  font-family: "Playpen Sans", sans-serif;
+  color: #8a3232;
 }
 .text-log {
-    font-size: small;
+  font-size: small;
 }
 /* Nav bar */
 header,
@@ -36,56 +43,134 @@ body {
 main {
   height: 100vh;
 }
-/* home page-about text index.html*/
-.about-box, .box {
+/* home page-about text index.html */
+.about-box,
+.box {
   margin: 20px;
   border: 1px solid;
   border-color: saddlebrown;
   margin: auto;
 }
-
+/* Table with booking list */
+.table {
+  border: #660000 solid 2px;
+}
+.custom-table td {
+  background-color: rgb(231, 199, 157) !important;
+  color: #8a3232;
+}
+.custom-table th {
+  background-color: #b5734d !important;
+  font-size: larger;
+  color: #660000;
+}
+.modal-content {
+  background-color: #ffffe1;
+  border: #660000 solid;
+}
 /* Titles */
-.about-title, .signin-title, .signup-title, .signout-title, .book-title, .list-title {
+.about-title,
+.signin-title,
+.signup-title,
+.signout-title,
+.book-title,
+.list-title,
+thead,
+.modal-title,
+.res-title {
   color: #660000;
   font-family: "Atma", sans-serif;
 }
 
-
 .no-wrap {
-    flex-wrap: nowrap;
+  flex-wrap: nowrap;
 }
 .about-img {
-    padding: 20px;
-    max-width: 100%;
+  padding: 20px;
+  max-width: 100%;
   height: auto;
 }
 
 /* Sign in page*/
-.signin-up-out {
-  padding: 60px;
-}
-.forgot, .signup-link, .signin-link {
-    font-family: "Playpen Sans", sans-serif;
-    color: red;
+.forgot,
+.signup-link,
+.signin-link {
+  font-family: "Playpen Sans", sans-serif;
+  color: red;
 }
 
 /* Buttons */
 
-.btn {
+.book-btn,
+.sg-btn,
+.view-btn {
   background-color: #8a3232;
   color: #ffb580;
   font-family: "Atma", sans-serif;
   border: 2px solid #660000;
 }
-.btn:hover {
-    background-color: #ffb580;
-    color: #660000;
-    border: 2px solid #660000;
+.book-btn:hover,
+.sg-btn:hover,
+.view-btn:hover {
+  background-color: #ffb580;
+  color: #660000;
+  border: 2px solid #660000;
 }
+
+.del-btn {
+  background-color: red;
+  color: #ffb580;
+  border: 2px solid darkred;
+}
+.del-btn:hover {
+  background-color: lightcoral;
+  color: red;
+  border: 2px solid darkred;
+}
+
+.update-btn,
+.save-btn {
+  background-color: rgb(4, 32, 4);
+  color: rgb(115, 159, 50);
+  border: 2px solid #660000;
+}
+
+.update-btn:hover,
+.save-btn:hover {
+  background-color: rgb(115, 159, 50);
+  color: rgb(4, 32, 4);
+  border: 2px solid #660000;
+}
+
+.cancel-btn {
+  background-color: rgb(248, 219, 32);
+  color: black;
+  border: 2px solid #660000;
+}
+.cancel-btn:hover {
+  background-color: rgb(158, 158, 4);
+  color: black;
+  border: 2px solid #660000;
+}
+.home-btn {
+  font-family: "Atma", sans-serif;
+  background-color: #8a3232;
+  color: #ffffe1;
+  border: 2px solid #660000;
+}
+.home-btn:hover {
+  background-color: #ffffe1;
+  color: #660000;
+  border: 2px solid #660000;
+}
+.sm-screen {
+    margin-bottom: 4px;
+}
+
 
 /* Footer */
 .footer {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 hr {
   margin-top: 5px;
@@ -100,4 +185,25 @@ hr {
   padding-top: 5;
 }
 
+.social {
+  transition: color 0.3s ease-in-out;
+  font-size: larger;
+}
+.social:hover {
+  color: #ffffe1;
+}
 
+@media screen and (min-width: 320px) {
+  /* home page */
+  .about-intro, .text {
+    font-size: smaller;
+  }
+  .logo {
+    width: 200px;
+    height: 50px;
+  }
+  .text-log {
+    font-size: x-small;
+  }
+
+}

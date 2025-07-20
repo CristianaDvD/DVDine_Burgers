@@ -1,27 +1,31 @@
-{% extends "base.html" %}
-
-{% load i18n %}
-
-{% block head_title %}{% trans "Sign Up" %}{% endblock head_title %}
-
-{% block content %}
+{% extends "base.html" %} {% load i18n %} {% block head_title %}{% trans "Sign Up" %}{% endblock head_title %} {% block content %}
 
 <div class="signin-up-out container text-center">
   <div class="row justify-content-md-center box p-5">
     <div class="col-12">
-<h1 class="signup-title">{% trans "Sign Up" %}</h1></div>
-<div class="col-12">
-<p class="text">{% blocktrans %}Already part of DVDine Burgers family? Then please <a class="signin-link" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p></div>
-<div class="col-12">
-<form class="signup text" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button class="sg-btn btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form></div>
+      <h1 class="signup-title">{% trans "Sign Up" %}</h1>
     </div>
+    <div class="col">
+      <p class="text">{% blocktrans %}Already part of DVDine Burgers family? Then please <a class="signin-link" href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
     </div>
+    <form
+      class="signup text"
+      id="signup_form"
+      method="post"
+      action="{% url 'account_signup' %}"
+    >
+      {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
+      <input
+        type="hidden"
+        name="{{ redirect_field_name }}"
+        value="{{ redirect_field_value }}"
+      />
+      {% endif %}
+      <button class="hand sg-btn btn" type="submit">
+        {% trans "Sign Up" %} &raquo;
+      </button>
+    </form>
+  </div>
+</div>
 
 {% endblock content %}

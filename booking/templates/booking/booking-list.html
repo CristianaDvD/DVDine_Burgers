@@ -37,13 +37,13 @@
             {% if booking.status != 2 and booking.status != 3 %}
             <td class="text-center">
               <button
-                class="btn update-btn openUpdateModal"
+                class="hand btn update-btn openUpdateModal"
                 data-url="{% url 'bookingUpdate' booking.pk %}"
               >
                 Update
               </button>
               <button
-                class="btn del-btn openDeleteModal"
+                class="hand btn del-btn openDeleteModal"
                 data-url="{% url 'bookingDelete' booking.pk %}"
               >
                 Delete
@@ -67,7 +67,7 @@
     <div class="col">
       <button
           id="openCreateModal"
-          class="btn book-btn"
+          class="btn book-btn hand"
           data-url="{% url 'bookingForm' %}"
         >
           Make a New Booking

@@ -6,7 +6,7 @@
       <h1 class="signin-title">{% trans "Sign In" %}</h1>
     </div>
 
-    <div class="col-12">
+    <div class="col">
       <p class="text">
         {% blocktrans %} Welcome back! <br> <br />To book, or see your existing
         bookings, <br>please sign in using your existing account, below. <br> <br />Not
@@ -15,7 +15,7 @@
       </p>
     </div>
 
-    <div class="col-12">
+    <div class="col">
       <form class="login text" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %} {{ form.as_p }} {% if redirect_field_value %}
         <input
@@ -29,7 +29,7 @@
           href="{% url 'account_reset_password' %}"
           >{% trans "Forgot Password?" %}</a
         >
-        <button class="primaryAction sg-btn btn" type="submit">
+        <button class="primaryAction sg-btn btn mt-2" type="submit">
           {% trans "Sign In" %}
         </button>
       </form>

@@ -95,28 +95,27 @@
       {% if user.is_authenticated %}
       <div class="col-12 text-center">
         <!-- Modal button for booking form -->
-        <button
-          id="openCreateModal"
-          class="btn"
+        <button id="openCreateModal"
+          class="btn book-btn"
           data-url="{% url 'bookingForm' %}"
         >
           Make a New Booking
         </button>
-        <a href="{% url 'bookingList' %}" class="btn">View your Bookings</a>
+        <a href="{% url 'bookingList' %}" class="btn view-btn">View your Bookings</a>
         {% else %}
         <p class="else-text text-center">
           <strong>To book or view your bookings, please sign in:</strong>
         </p>
         <div class="col-12 d-flex justify-content-center">
           <a
-            class="nav-link {% if request.path == login_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+            class="sg-btn nav-link {% if request.path == login_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
             aria-current="page"
             role="button"
             href="{% url 'account_login' %}"
             >Sign In</a
           ><span class="border fs-4 text pt-2">OR</span>
           <a
-            class="nav-link {% if request.path == signup_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
+            class="sg-btn nav-link {% if request.path == signup_url %}active{% endif %} btn btn-lg px-4 py-3 fs-5"
             aria-current="page"
             role="button"
             href="{% url 'account_signup' %}"

@@ -7,12 +7,12 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <h3 class="list-title">My Bookings</h3>
+      <h2 class="list-title text-center pb-2">My Bookings</h2>
     </div>
 
     <div class="col">
-      <table class="table">
-        <thead>
+      <table class="table table-hover table-striped-columns custom-table">
+        <thead class="text-center">
           <tr>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
@@ -24,7 +24,7 @@
         <tbody>
           {% for booking in bookings %}
           <tr>
-            <th scope="row">{{ booking.date }}</th>
+            <td scope="row">{{ booking.date }}</td>
             <td>{{ booking.time }}</td>
             <td>{{ booking.number_of_guests }}</td>
             <td>
@@ -35,15 +35,15 @@
               {% endif %}
             </td>
             {% if booking.status != 2 and booking.status != 3 %}
-            <td>
+            <td class="text-center">
               <button
-                class="btn openUpdateModal"
+                class="btn update-btn openUpdateModal"
                 data-url="{% url 'bookingUpdate' booking.pk %}"
               >
                 Update
               </button>
               <button
-                class="btn openDeleteModal"
+                class="btn del-btn openDeleteModal"
                 data-url="{% url 'bookingDelete' booking.pk %}"
               >
                 Delete
@@ -67,7 +67,7 @@
     <div class="col">
       <button
           id="openCreateModal"
-          class="btn btn-primary"
+          class="btn book-btn"
           data-url="{% url 'bookingForm' %}"
         >
           Make a New Booking

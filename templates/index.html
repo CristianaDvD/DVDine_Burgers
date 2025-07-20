@@ -2,14 +2,14 @@
 <!-- About info starts here -->
 <div class="about container-fluid">
   <div class="row no-wrap m-3">
-    <div class="col-md-6 ps-5">
+    <div class="col-md-6 ps-5 no-show d-none d-lg-block">
         <img class="about-img"
           src="{% static 'images/about.png' %}"
           width="600"
           alt="A collage of 3 pictures ilustrating burgers and burgers patties on the grill."
         />
     </div>
-    <div class="col-md-6 p-5 about-box">
+    <div class="col-sm-12 col-md-6 p-5 about-box">
       <h2 class="about-title text-center">Who is behind DVDine Burgers?</h2>
       <p class="about-intro">
         At DVDine Burgers, we're more than just a burger joint — we’re a
@@ -30,7 +30,7 @@
         little bit curious to get to taste our Divine Burgers?
       </p>
       <div class="col-12 text-center">
-        <a class="btn about-btn" href="{% url 'bookingPage' %}" role="button"
+        <a class="btn book-btn" href="{% url 'bookingPage' %}" role="button"
           >Book a Table</a
         >
       </div>

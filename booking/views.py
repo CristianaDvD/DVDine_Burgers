@@ -48,7 +48,6 @@ def booking_form(request):
 
 
 @login_required
-@login_required
 def booking_list(request):
     """
     Display user's bookings in booking-list.html.

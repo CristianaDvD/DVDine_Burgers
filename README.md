@@ -308,18 +308,18 @@ And we also have customised 403, 404 and 500 error pages, all customised as per 
 ## Testing
 Manual and automated testing undertaken for this project can be viewed in the separate [TESTING.md file](TESTING.md) as follows:
 
-- [Introduction](#dvdine_burgers--testing)
-- [Manual Testing](#manual-testing)
-  - [Navigation](#navigation)
-  - [Responsiveness](#responsiveness)
-  - [Authentication](#authentication)
-  - [CRUD functionality](#crud-functionality)
-- [Validator Testing](#validator-testing)
-  - [W3C](#w3c)
-  - [PEP8](#pep8)
-  - [JSHint](#jshint)
-- [Accessibility & Performance](#accessibility--performance)
-- [Bugs](#bugs)
+- [Introduction](TESTING.md#dvdine_burgers--testing)
+- [Manual Testing](TESTING.md#manual-testing)
+  - [Navigation](TESTING.md#navigation)
+  - [Responsiveness](TESTING.md#responsiveness)
+  - [Authentication](TESTING.md#authentication)
+  - [CRUD functionality](TESTING.md#crud-functionality)
+- [Validator Testing](TESTING.md#validator-testing)
+  - [W3C](TESTING.md#w3c)
+  - [PEP8](TESTING.md#pep8)
+  - [JSHint](TESTING.md#jshint)
+- [Accessibility & Performance](TESTING.md#accessibility--performance)
+- [Bugs](TESTING.md#bugs)
 
 ## Deployment
 

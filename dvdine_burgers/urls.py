@@ -27,4 +27,7 @@ urlpatterns = [
     path('menu/', views.menu_view, name='menu'),
     path('summernote/', include('django_summernote.urls')),
     path('', views.home, name='home'),
+    path('403/', views.trigger_403),
+    path('404/', views.trigger_404),
+    path('500/', views.trigger_500),
     ]

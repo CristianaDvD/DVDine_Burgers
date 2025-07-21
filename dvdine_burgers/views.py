@@ -1,3 +1,4 @@
+from django.http import HttpResponseForbidden, HttpResponseNotFound, HttpResponseServerError
 from django.shortcuts import render
 from django.core.paginator import Paginator
 
@@ -173,3 +174,15 @@ def menu_view(request):
         'page_obj': page_obj,
     }
     return render(request, 'menu.html', context)
+
+
+def trigger_403(request):
+    return HttpResponseForbidden(render(request, '403.html'))
+
+
+def trigger_404(request):
+    return HttpResponseNotFound(render(request, '404.html'))
+
+
+def trigger_500(request):
+    return HttpResponseServerError(render(request, '500.html'))

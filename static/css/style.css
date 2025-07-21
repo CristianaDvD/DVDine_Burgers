@@ -1,6 +1,21 @@
 /* Google fonts */
 @import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Playpen+Sans:wght@100..800&display=swap");
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #ffffe1;
+  
+}
+main {
+    min-height: 100vh;
+  flex: 1 0 auto;
+}
+
 .text,
 .about-intro,
 .book-text,
@@ -36,12 +51,7 @@ footer h3 {
   color: #ffb580;
   font-family: "Atma", sans-serif;
 }
-body {
-  background-color: #ffffe1;
-}
-main {
-  height: 100vh;
-}
+
 /* home page-about text index.html */
 .about-box,
 .box {
@@ -119,14 +129,14 @@ thead,
   border: 2px solid #660000;
 }
 .next-btn {
-    background-color: #ffb580;
-    color: #660000;
-    border: 2px #660000 solid;
+  background-color: #ffb580;
+  color: #660000;
+  border: 2px #660000 solid;
 }
 .next-btn:hover {
-    background-color: #ffffe1;
-    color: #660000;
-    border: 2px solid #660000;
+  background-color: #ffffe1;
+  color: #660000;
+  border: 2px solid #660000;
 }
 
 .del-btn {
@@ -188,6 +198,7 @@ thead,
 
 /* Footer */
 .footer {
+  flex-shrink: 0;
   padding-top: 10px;
 }
 hr {
@@ -212,8 +223,8 @@ hr {
 }
 
 .card-img-top {
-    width: 100%;
-    height: 200px;
+  width: 100%;
+  height: 200px;
 }
 
 @media screen and (min-width: 320px) {
@@ -237,6 +248,9 @@ hr {
     margin-bottom: 2px;
     font-size: small;
   }
+  .view-btn, .book-btn {
+    padding: 2px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -251,6 +265,9 @@ hr {
     padding: 5px;
     margin-bottom: 2px;
     font-size: medium;
+  }
+  .view-btn, .book-btn {
+    padding: 4px;
   }
 }
 @media screen and (min-width: 992px) {

@@ -306,7 +306,20 @@ And we also have customised 403, 404 and 500 error pages, all customised as per 
 - [Code Institute](https://codeinstitute.net/) course materials and walkthrough projects provided many reference points for implementing features of this project
 
 ## Testing
+Manual and automated testing undertaken for this project can be viewed in the separate [TESTING.md file](TESTING.md) as follows:
 
+- [Introduction](#dvdine_burgers--testing)
+- [Manual Testing](#manual-testing)
+  - [Navigation](#navigation)
+  - [Responsiveness](#responsiveness)
+  - [Authentication](#authentication)
+  - [CRUD functionality](#crud-functionality)
+- [Validator Testing](#validator-testing)
+  - [W3C](#w3c)
+  - [PEP8](#pep8)
+  - [JSHint](#jshint)
+- [Accessibility & Performance](#accessibility--performance)
+- [Bugs](#bugs)
 
 ## Deployment
 
@@ -396,6 +409,7 @@ python3 manage.py migrate
 - [Link inspo for modal using java, ajax, and bootstrap](https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=loading-content-in-modal-body-via-ajax-using-javascript)
 - [Link for starters menu](https://www.bbcgoodfood.com/howto/guide/simple-starter-ideas)
 - [Link for burger menu](https://thebeefyboys.com/menu/)
+- [Link to check site is responsive](https://ui.dev/amiresponsive)
 
 
 

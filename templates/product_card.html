@@ -1,0 +1,15 @@
+{% load static %}
+
+<div class="col">
+  <div class="card h-100">
+    <img
+      src="{% static product.image %}"
+      class="card-img-top"
+      alt="{{ product.alt }}"
+    />
+    <div class="card-body">
+      <h5 class="card-title res-title text-center">{{ product.name }}</h5>
+      <p class="card-text text">Contains:<br />{{ product.ingredients }}</p>
+    </div>
+  </div>
+</div>

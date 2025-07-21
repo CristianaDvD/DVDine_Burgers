@@ -1,7 +1,48 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <h1 class="res-title text-center">The DVDine Menu</h1>
 
+<div class="container">
+
+  <!-- Category Header -->
+  {% if category == 'starters' %}
+    <h4 class="res-title text-center p-3 border-bottom">Starter Snacks</h4>
+  {% elif category == 'burgers' %}
+    <h4 class="res-title text-center p-3 border-bottom">Burgers</h4>
+  {% elif category == 'deserts' %}
+    <h4 class="res-title text-center p-3 border-bottom">Deserts</h4>
+  {% elif category == 'drinks' %}
+    <h4 class="res-title text-center p-3 border-bottom">Drinks</h4>
+  {% endif %}
+
+  <!-- Products Grid -->
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    {% for product in page_obj %}
+      {% include "product_card.html" with product=product %}
+    {% empty %}
+      <p>No products available.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="text-center mt-3">
+    {% if page_obj.has_previous %}
+      <a class="btn next-btn mx-1" href="?category={{ category }}&page={{ page_obj.previous_page_number }}">« Prev</a>
+    {% endif %}
+
+    <span class="text">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+      <a class="btn next-btn mx-1" href="?category={{ category }}&page={{ page_obj.next_page_number }}">Next »</a>
+    {% endif %}
+  </div>
+
+  <!-- Category Navigation -->
+  <div class="text-center mt-4">
+    <a class="btn view-btn  mx-1" href="?category=starters&page=1">Starters</a>
+    <a class="btn view-btn mx-1" href="?category=burgers&page=1">Burgers</a>
+    <a class="btn view-btn mx-1" href="?category=deserts&page=1">Deserts</a>
+    <a class="btn view-btn mx-1" href="?category=drinks&page=1">Drinks</a>
+  </div>
+
+</div>
 {% endblock %}

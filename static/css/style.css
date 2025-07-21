@@ -9,10 +9,9 @@ body {
 
 body {
   background-color: #ffffe1;
-  
 }
 main {
-    min-height: 100vh;
+  min-height: 100vh;
   flex: 1 0 auto;
 }
 
@@ -211,7 +210,7 @@ hr {
 .copyright {
   color: #d2946f;
   font-size: 12px;
-  padding-top: 5;
+  padding-top: 5px;
 }
 
 .social {
@@ -248,7 +247,8 @@ hr {
     margin-bottom: 2px;
     font-size: small;
   }
-  .view-btn, .book-btn {
+  .view-btn,
+  .book-btn {
     padding: 2px;
   }
 }
@@ -266,7 +266,8 @@ hr {
     margin-bottom: 2px;
     font-size: medium;
   }
-  .view-btn, .book-btn {
+  .view-btn,
+  .book-btn {
     padding: 4px;
   }
 }

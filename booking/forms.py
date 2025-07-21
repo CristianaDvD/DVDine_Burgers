@@ -25,6 +25,10 @@ class BookingForm(forms.ModelForm):
         }
 
     def clean_date(self):
+        """
+        raise error if time booked is in the past
+        or if booking is made on Mondays
+        """
         date = self.cleaned_data['date']
         if date < timezone.now().date():
             raise forms.ValidationError(
@@ -35,6 +39,10 @@ class BookingForm(forms.ModelForm):
         return date
 
     def clean(self):
+        """
+        raise error if booking is made outside
+        hours on Tue-Thus
+        """
         cleaned_data = super().clean()
         date = cleaned_data.get("date")
         time = cleaned_data.get("time")

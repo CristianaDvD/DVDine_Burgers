@@ -4,14 +4,23 @@ from django.core.paginator import Paginator
 
 
 def home(request):
+    """
+    returns home page on click
+    """
     return render(request, 'index.html')
 
 
 def menu(request):
+    """
+    returns menu page
+    """
     return render(request, 'menu.html')
 
 
 def contact(request):
+    """
+    returns contact page
+    """
     return render(request, 'contact.html')
 
 
@@ -177,12 +186,21 @@ def menu_view(request):
 
 
 def trigger_403(request):
+    """
+    returns customised 403 error page
+    """
     return HttpResponseForbidden(render(request, '403.html'))
 
 
 def trigger_404(request):
+    """
+    returns customised 404 error page
+    """
     return HttpResponseNotFound(render(request, '404.html'))
 
 
 def trigger_500(request):
+    """
+    returns customised 500 error page
+    """
     return HttpResponseServerError(render(request, '500.html'))

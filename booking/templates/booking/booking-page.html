@@ -95,13 +95,16 @@
       {% if user.is_authenticated %}
       <div class="col-12 text-center">
         <!-- Modal button for booking form -->
-        <button id="openCreateModal"
+        <button
+          id="openCreateModal"
           class="btn book-btn sm-screen"
           data-url="{% url 'bookingForm' %}"
         >
           Make a New Booking
         </button>
-        <a href="{% url 'bookingList' %}" class="btn view-btn sm-screen ">View your Bookings</a>
+        <a href="{% url 'bookingList' %}" class="btn view-btn sm-screen"
+          >View your Bookings</a
+        >
         {% else %}
         <p class="else-text text-center">
           <strong>To book or view your bookings, please sign in:</strong>
@@ -128,9 +131,6 @@
   </div>
 </div>
 
+{% endblock %} {% block scripts %}
+<script src="{% static 'js/modals.js' %}"></script>
 {% endblock %}
-
-{% block scripts %}
-  <script src="{% static 'js/modals.js' %}"></script>
-{% endblock %}
-

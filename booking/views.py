@@ -14,40 +14,6 @@ def booking_page(request):
 
 
 @login_required
-@require_http_methods(["GET", "POST"])
-def booking_form(request):
-    """
-    View to handle booking form submission.
-    Used in the modal on 'booking-page.html'
-    with AJAX form.
-    """
-    if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.user = request.user
-            booking.status = 0
-            booking.save()
-
-            # Return full booking list page instead of JSON
-            bookings = Booking.objects.filter(
-                user=request.user).order_by('-date')
-            return render(
-                request,
-                'booking/booking-list.html',
-                {'bookings': bookings})
-    else:
-        form = BookingForm()
-
-    return render(request, 'booking/modal-form.html', {
-        'form': form,
-        'modal_type': 'new_booking',
-        'modal_title': 'New Booking',
-        'modal_action': request.path,
-    })
-
-
-@login_required
 def booking_list(request):
     """
     Display user's bookings in booking-list.html.
@@ -62,10 +28,41 @@ def booking_list(request):
 
 @login_required
 @require_http_methods(["GET", "POST"])
+def booking_form(request):
+    """Handle booking creation via modal form."""
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.status = 0
+            booking.save()
+
+            if request.headers.get("x-requested-with") == "XMLHttpRequest":
+                # return just the modal, JS will reload page
+                return render(request, 'booking/modal-form.html', {
+                    'form': BookingForm(),
+                    'modal_type': 'new_booking',
+                    'modal_title': 'New Booking',
+                    'modal_action': request.path,
+                })
+
+            return redirect('bookingList')
+    else:
+        form = BookingForm()
+
+    return render(request, 'booking/modal-form.html', {
+        'form': form,
+        'modal_type': 'new_booking',
+        'modal_title': 'New Booking',
+        'modal_action': request.path,
+    })
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
 def modify_booking(request, pk):
-    """
-    Hadles update form for modal in booking-list.html
-    """
+    """Handle booking update via modal."""
     booking = get_object_or_404(Booking, pk=pk)
     if request.method == 'POST':
         form = BookingForm(request.POST, instance=booking)
@@ -75,12 +72,16 @@ def modify_booking(request, pk):
             updated.status = 0
             updated.save()
 
-            bookings = Booking.objects.filter(
-                user=request.user).order_by('-date')
-            return render(
-                request,
-                'booking/booking-list.html',
-                {'bookings': bookings})
+            if request.headers.get("x-requested-with") == "XMLHttpRequest":
+                return render(request, 'booking/modal-form.html', {
+                    'form': BookingForm(instance=updated),
+                    'modal_type': 'update',
+                    'modal_title': 'Update Booking',
+                    'modal_action': request.path,
+                    'booking': updated,
+                })
+
+            return redirect('bookingList')
     else:
         form = BookingForm(instance=booking)
 
@@ -96,19 +97,18 @@ def modify_booking(request, pk):
 @login_required
 @require_http_methods(["GET", "POST"])
 def delete_booking(request, pk):
-    """
-    Handles delete confimation modal and form
-    submission
-    """
+    """Handle delete confirmation via modal."""
     booking = get_object_or_404(Booking, pk=pk)
     if request.method == 'POST':
         booking.delete()
-
-        bookings = Booking.objects.filter(user=request.user).order_by('-date')
-        return render(
-            request,
-            'booking/booking-list.html',
-            {'bookings': bookings})
+        if request.headers.get("x-requested-with") == "XMLHttpRequest":
+            # JS will reload page
+            return render(request, 'booking/modal-form.html', {
+                'modal_type': 'delete',
+                'modal_title': 'Confirm Delete Booking',
+                'modal_action': request.path,
+            })
+        return redirect('bookingList')
 
     return render(request, 'booking/modal-form.html', {
         'modal_type': 'delete',

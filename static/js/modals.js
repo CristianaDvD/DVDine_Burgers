@@ -12,151 +12,68 @@ document.addEventListener("DOMContentLoaded", function () {
     return container;
   }
 
-  function showToast(title, message, type = "success") {
-    const toastContainer =
-      document.getElementById("toast-container") ||
-      (() => {
-        const container = document.createElement("div");
-        container.id = "toast-container";
-        container.className =
-          "toast-container position-fixed bottom-0 end-0 p-3";
-        document.body.appendChild(container);
-        return container;
-      })();
-
-    const toastId = "toast-" + Math.floor(Math.random() * 10000);
-    const toast = document.createElement("div");
-    toast.className = `toast align-items-center text-white bg-${type} border-0 show`;
-    toast.id = toastId;
-    toast.role = "alert";
-    toast.ariaLive = "assertive";
-    toast.ariaAtomic = "true";
-    toast.style.minWidth = "250px";
-    toast.style.marginBottom = "0.5rem";
-    toast.innerHTML = `
-      <div class="d-flex">
-        <div class="toast-body">
-          <strong>${title}</strong><br>${message}
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    `;
-    toastContainer.appendChild(toast);
-
-    setTimeout(() => {
-      toast.remove();
-    }, 4000);
-  }
-
   function loadModal(url) {
-    fetch(url, {
-      headers: { "X-Requested-With": "XMLHttpRequest" },
-    })
-      .then((response) => response.text())
+    fetch(url, { headers: { "X-Requested-With": "XMLHttpRequest" } })
+      .then((r) => r.text())
       .then((html) => {
         const container = ensureModalContainer();
-        container.innerHTML = html;
 
-        const modalEl = container.querySelector("#modalForm");
-        if (!modalEl) {
-          console.error("Modal element not found in response.");
-          return;
+        if (currentModal) {
+          currentModal.hide();
+          setTimeout(() => {
+            currentModal.dispose();
+            const oldModal = container.querySelector("#modalForm");
+            if (oldModal) oldModal.remove();
+          }, 200);
         }
 
-        setTimeout(() => {
-          if (currentModal) currentModal.dispose();
-          currentModal = new bootstrap.Modal(modalEl);
-          currentModal.show();
-          bindForms(modalEl);
-        }, 10);
-      })
-      .catch((err) => {
-        console.error("Error loading modal:", err);
-        showToast("Error", "Unable to load modal", "danger");
-      });
-  }
+        container.innerHTML = html;
+        const modalEl = container.querySelector("#modalForm");
+        if (!modalEl) return;
 
-  function bindForms(modalEl) {
-    modalEl.querySelectorAll(".ajax-form").forEach((form) => {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: { "X-Requested-With": "XMLHttpRequest" },
-        })
-          .then((response) => response.text())
-          .then((html) => {
-            const container = ensureModalContainer();
-            container.innerHTML = html;
+        currentModal = new bootstrap.Modal(modalEl);
+        currentModal.show();
 
-            const newModalEl = container.querySelector("#modalForm");
-
-            // If modal missing, assume full page and reload UI
-            if (!newModalEl) {
-              // Clean up Bootstrap modal side effects
-              if (currentModal) currentModal.hide();
-
-              document.body.classList.remove("modal-open");
-              document.body.style.overflow = "";
-              document
-                .querySelectorAll(".modal-backdrop")
-                .forEach((el) => el.remove());
-
-              document.body.innerHTML = html;
-              showToast("Success", "Booking updated.", "success");
-              return;
-            }
-
-            const formErrors = newModalEl.querySelector(".alert-danger");
-            if (!formErrors) {
-              currentModal.hide();
-              showToast("Success", "Action completed", "success");
-
-              // Optional: full page reload if list was updated
-              setTimeout(() => {
-                window.location.href = window.location.href;
-              }, 1000);
-              return;
-            }
-
-            // Modal still has errors, rebinding form
-            if (currentModal) currentModal.dispose();
-            currentModal = new bootstrap.Modal(newModalEl);
-            currentModal.show();
-            bindForms(newModalEl);
-            showToast("Error", "Please correct the form errors", "danger");
-          })
-          .catch((err) => {
-            console.error("Form submission error:", err);
-            showToast("Error", "Submission failed", "danger");
+        // Bind form inside modal
+        modalEl.querySelectorAll(".ajax-form").forEach((form) => {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { "X-Requested-With": "XMLHttpRequest" },
+            })
+              .then((r) => r.text())
+              .then(() => {
+                // On success, just reload the page
+                window.location.reload();
+              })
+              .catch((err) => console.error("Form submit error:", err));
           });
-      });
-    });
+        });
+      })
+      .catch((err) => console.error("Load modal error:", err));
   }
 
   function bindButtons() {
     document
       .getElementById("openCreateModal")
       ?.addEventListener("click", function () {
-        const url = this.getAttribute("data-url");
-        if (url) loadModal(url);
+        loadModal(this.dataset.url);
       });
 
     document.querySelectorAll(".openUpdateModal").forEach((btn) => {
       btn.addEventListener("click", function () {
-        const url = this.getAttribute("data-url");
-        if (url) loadModal(url);
+        loadModal(this.dataset.url);
       });
     });
 
     document.querySelectorAll(".openDeleteModal").forEach((btn) => {
       btn.addEventListener("click", function () {
-        const url = this.getAttribute("data-url");
-        if (url) loadModal(url);
+        loadModal(this.dataset.url);
       });
     });
   }
 
-  bindButtons(); // initial
+  bindButtons();
 });

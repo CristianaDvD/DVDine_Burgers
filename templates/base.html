@@ -1,10 +1,10 @@
 {% load static %}
-{% url 'home' as home_url %} 
-{% url 'account_login' as login_url %} 
-{% url 'account_signup' as signup_url %} 
-{% url 'account_logout' as logout_url %} 
-{% url 'bookingPage' as bookingPage_url %} 
-{% url 'menu' as menu_url %} 
+{% url 'home' as home_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
+{% url 'bookingPage' as bookingPage_url %}
+{% url 'menu' as menu_url %}
 {% url 'contact' as contact_url %}
 <!DOCTYPE html>
 <html lang="en">
@@ -70,32 +70,32 @@
             <ul class="navbar-nav">
               <li class="nav-item hand">
                 <a
-                  class="nav-link {% if request.path == home_url %}active"
-                  aria-current="page{% endif %}"
+                  class="nav-link {% if request.path == home_url %}active{% endif %}"
+                  aria-current="{% if request.path == home_url %}page{% endif %}"
                   href="{% url 'home' %}"
                   >Home</a
                 >
               </li>
               <li class="nav-item hand">
                 <a
-                  class="nav-link {% if request.path == menu_url %}active"
-                  aria-current="page{% endif %}"
+                  class="nav-link {% if request.path == menu_url %}active{% endif %}"
+                  aria-current="{% if request.path == menu_url %}page{% endif %}"
                   href="{% url 'menu' %}"
                   >Menu</a
                 >
               </li>
               <li class="nav-item hand">
                 <a
-                  class="nav-link {% if request.path == contact_url %}active"
-                  aria-current="page{% endif %}"
+                  class="nav-link {% if request.path == contact_url %}active{% endif %}"
+                  aria-current="{% if request.path == contact_url %}page{% endif %}"
                   href="{% url 'contact' %}"
                   >Contact us</a
                 >
               </li>
               <li class="nav-item hand">
                 <a
-                  class="nav-link {% if request.path == bookingPage_url %}active"
-                  aria-current="page{% endif %}"
+                  class="nav-link {% if request.path == bookingPage_url %}active{% endif %}"
+                  aria-current="{% if request.path == bookingPage_url %}page{% endif %}"
                   href="{% url 'bookingPage' %}"
                   >Book a Table</a
                 >
@@ -103,8 +103,8 @@
               {% if user.is_authenticated %}
               <li class="nav-item hand">
                 <a
-                  class="nav-link {% if request.path == logout_url %}active"
-                  aria-current="page{% endif %}"
+                  class="nav-link {% if request.path == logout_url %}active{% endif %}"
+                  aria-current="{% if request.path == logout_url %}page{% endif %}"
                   href="{% url 'account_logout' %}"
                   >Sign Out</a
                 >
@@ -112,16 +112,16 @@
               {% else %}
               <li class="nav-item hand">
                 <a
-                  class="nav-link {% if request.path == login_url %}active"
-                  aria-current="page{% endif %}"
+                  class="nav-link {% if request.path == login_url %}active{% endif %}"
+                  aria-current="{% if request.path == login_url %}page{% endif %}"
                   href="{% url 'account_login' %}"
                   >Sign In</a
                 >
               </li>
               <li class="nav-item hand">
                 <a
-                  class="nav-link {% if request.path == signup_url %}active"
-                  aria-current="page{% endif %}"
+                  class="nav-link {% if request.path == signup_url %}active{% endif %}"
+                  aria-current="{% if request.path == signup_url %}page{% endif %}"
                   href="{% url 'account_signup' %}"
                   >Sign Up</a
                 >
@@ -208,6 +208,8 @@
       src="https://kit.fontawesome.com/4804c64e3a.js"
       crossorigin="anonymous"
     ></script>
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+    <script src="{% static 'js/modals.js' %}"></script>
+    {% endblock %}
   </body>
 </html>

@@ -411,6 +411,8 @@ python3 manage.py migrate
 - [Link for burger menu](https://thebeefyboys.com/menu/)
 - [Link to check site is responsive](https://ui.dev/amiresponsive)
 
+- **I would like to give credits to my temporary mentor Can Sucullu for guiding me into the correct direction on how to add extra security for my app. He also provided me with tools on how to write better commit messages. Thank you!**
+
 
 
 

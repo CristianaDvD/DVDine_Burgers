@@ -43,6 +43,7 @@ These tests ensure that a user can successfully navigate the site using the prov
 | Menu page buttons for pagination | Displays starters, or burgers, deserts or drinks when buttons clicked | Click buttons to choose what menu to display | Opens correct menu page | Pass |
 | Admin page | Opens admin page via django libraries | Type admin into the https://dvdine-burgers-140c23a3ed2a.herokuapp.com/admin into the browser. Hit Enter. Sign in superuser details. | Admin page displays with Booking system details in left-hand menu | Pass |
 
+
 ### Responsiveness
 
 These tests check that the site responds correctly at various sizes of screen, resizing, hiding, and reformatting elements where necessary.
@@ -68,6 +69,7 @@ These tests check the sign up, sign in, and sign out functionality of the site w
 | Sign in with wrong password | Site displays error password doesn't match | Input wrong password for an existing username | Page displays error as expected. | Pass |
 | Sign Up with previously registered username | Site displays error, username exists already | Try to sign up with existing username | Site displays error as expected. | Pass |
 | Sign Out | User scan safely sign out from the site | Open log out page | Page with sign out button and go to home page buttons is displayed. When sign out button is clicked, server redirects to home page | Pass |
+| URLs alteration | Returns 404/403 page | Alterate urls trying to access other users' bookings. Write ../booking/update/<user no>/ or ../booking/delete/<user no> or ../booking/list/<user no> and hit enter. | If object doesn't exist browser will return 404 page. If object exists but the user is not the owner, browser will return 403 page | Pass |
 
 ### CRUD Functionality
 
@@ -142,3 +144,4 @@ The site has been tested using the [WAVE Evaluation Tool](https://wave.webaim.or
 3. Server doesn't get my json responses for the modals.js. Bootstrap and json couldn't get my html responses. Created a separate html for my modal, so that Java used with Bootstrap could insert the modal content in the page. Bug Fixed.
 4. Bug in modals. No reload after actions. Had arria-hidden set to true and show and d-block on the same line of code. Bug now fixed with code changed, as removed d-block and show classes and let Java and Bootstrap do the magic.
 5. Sticky footer would scroll over in small screens. Set body height to 100% and margin to 0, and main min-height to 100vh and flex: 1 0 auto. Bug now fixed. Footer remains sticked to bottom.
+6. After one submission, modals won't open. After one submission, the buttons on the booking-list page stopped working. I changed my modal.js file to only reload modals rather than the entire page. Booking views were also changed to accommodate AJAX responses. After making these adjustments, the bug was fixed.

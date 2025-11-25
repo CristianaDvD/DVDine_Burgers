@@ -19,6 +19,8 @@ from django.urls import path, include
 from . import views
 
 
+handler403 = 'booking.views.custom_permission_denied'
+
 urlpatterns = [
     path('accounts/', include("allauth.urls")),
     path('admin/', admin.site.urls),
